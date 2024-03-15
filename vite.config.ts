@@ -1,16 +1,22 @@
 /// <reference types="vitest" />
-import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
-import environment from 'vite-plugin-environment';
-import dotenv from 'dotenv';
+import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite'
+import environment from 'vite-plugin-environment'
+import { resolve } from 'node:path'
+import dotenv from 'dotenv'
 
-dotenv.config();
+dotenv.config()
+
+const alias = [{ find: '@', replacement: resolve(__dirname, './src') }]
 
 export default defineConfig({
   root: 'src',
   build: {
     outDir: '../dist',
     emptyOutDir: true,
+  },
+  resolve: {
+    alias,
   },
   optimizeDeps: {
     esbuildOptions: {
@@ -37,4 +43,4 @@ export default defineConfig({
     setupFiles: 'setupTests.ts',
     cache: { dir: '../node_modules/.vitest' },
   },
-});
+})
