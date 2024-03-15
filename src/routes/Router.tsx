@@ -1,9 +1,4 @@
-import {
-  // createHashRouter,
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-} from "react-router-dom"
+import { createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom"
 
 // components
 import Layout from "@/components/layout/Layout"
@@ -15,7 +10,7 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="stats" element={<Stats />} />
       <Route path="mint" element={<Mint />} />
-      <Route path="transactions" element={<Transactions />} />
+      <Route path="txs" element={<Transactions />} />
     </Route>,
   ),
 )

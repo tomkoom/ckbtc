@@ -24,8 +24,9 @@ const Nav: FC = (): JSX.Element => {
 }
 
 const NavStyled = styled.header`
+  /* background-color: var(--background);
   position: sticky;
-  top: 0;
+  top: 0; */
 
   > hr {
     border: none;

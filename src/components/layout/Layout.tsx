@@ -1,5 +1,5 @@
 import { FC } from "react"
-import styled from "styled-components"
+import { styled } from "styled-components"
 import "./Layout.css"
 import { Nav, Navlinks, Footer } from "./_index"
 import { Outlet } from "react-router-dom"
@@ -33,6 +33,8 @@ const LayoutStyled = styled.div`
 
   /* footer at the bottom */
   min-height: 100vh;
+
+  /* root font */
 
   > main.main {
     padding: 2rem 2rem;

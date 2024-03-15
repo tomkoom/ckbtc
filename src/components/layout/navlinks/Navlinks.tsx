@@ -1,5 +1,5 @@
 import { FC } from "react"
-import styled from "styled-components"
+import { styled } from "styled-components"
 import { NavItem } from "./_index"
 import { device } from "@/styles/breakpoints"
 import { useNavigate } from "react-router-dom"
@@ -15,9 +15,9 @@ const Navlinks: FC = (): JSX.Element => {
 
   const navlinks = [
     { label: "Overview", route: () => nav("/") },
+    { label: "Transactions", route: () => nav("txs") },
     { label: "Stats", route: () => nav("stats") },
     { label: "Mint", route: () => nav("mint") },
-    { label: "Transactions", route: () => nav("transactions") },
     { label: "ckBTC DApps", route: () => nav("/") },
   ]
 

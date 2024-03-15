@@ -42,7 +42,7 @@ h6 {
   font-size: var(--fs6);
 }
 
-/* –––ROOT––– */
+/* -- ROOT -- */
 
 :root {
   /* Cool Gray IBM https://www.ibm.com/design/language/color/ */
@@ -111,9 +111,10 @@ h6 {
   --fontFamily: "Inter", sans-serif;
   --monospace: "Inconsolata", monospace;
 
-  /* animaiton */
+  /* ... */
 
   --transition1: all 0.25s, opacity 1s;
+  --shadow1: all 0.25s, opacity 1s;
 }
 
 /* –––THEME––– */
