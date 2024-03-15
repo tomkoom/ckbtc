@@ -16,20 +16,20 @@ const NavItem: FC<NavItemProps> = ({ label, route, icon }): JSX.Element => {
   )
 }
 
-const NavItemStyled = styled.div`
+const NavItemStyled = styled.button`
+  height: 4rem;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.25rem;
-  height: 2.75rem;
-  padding: 0 0.75rem;
-  font-size: var(--fsText);
+  color: var(--secondaryColor);
+  font-size: var(--fs6);
   font-weight: var(--fwMedium);
-  background-color: var(--underlay1);
-  border-radius: 1.375rem;
   cursor: pointer;
   transition: var(--transition1);
 
   &:hover {
+    color: var(--primaryColor);
     background-color: var(--underlay2);
   }
 

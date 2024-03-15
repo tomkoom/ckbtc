@@ -1,30 +1,84 @@
 import { FC } from "react"
 import styled from "styled-components"
 import { NavItem } from "./_index"
+import { device } from "@/styles/breakpoints"
+import { useNavigate } from "react-router-dom"
 
 const Navlinks: FC = (): JSX.Element => {
+  const navigate = useNavigate()
+
+  const nav = (pathname: string) => {
+    navigate({
+      pathname,
+    })
+  }
+
+  const navlinks = [
+    { label: "Overview", route: () => nav("/") },
+    { label: "Stats", route: () => nav("stats") },
+    { label: "Mint", route: () => nav("mint") },
+    { label: "Transactions", route: () => nav("transactions") },
+    { label: "ckBTC DApps", route: () => nav("/") },
+  ]
+
   return (
     <NavlinksStyled>
-      <div>
-        <NavItem label="Home" route={() => {}} />
-      </div>
+      <ul className="navlinks">
+        {navlinks.map((navlink, i) => (
+          <li key={navlink.label}>
+            <NavItem label={navlink.label} route={navlink.route} />
+            {i + 1 < navlinks.length && <hr />}
+          </li>
+        ))}
+      </ul>
+
+      <hr />
     </NavlinksStyled>
   )
 }
 
 const NavlinksStyled = styled.nav`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 1rem 0;
-  padding: 0 1rem;
-
-  > div {
+  > ul.navlinks {
     display: flex;
+    align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 0.25rem;
+
+    @media ${device.tablet} {
+      justify-content: flex-start;
+    }
+
+    > li {
+      display: flex;
+      align-items: center;
+      flex: 1;
+
+      @media ${device.tablet} {
+        flex: unset;
+      }
+
+      > button {
+        width: 100%;
+
+        @media ${device.tablet} {
+          padding: 0 1rem;
+        }
+      }
+
+      > hr {
+        border: none;
+        height: 3rem;
+        width: 1px;
+        background-color: var(--underlay2);
+      }
+    }
+  }
+
+  > hr {
+    border: none;
+    height: 1px;
+    background-color: var(--underlay2);
+    width: 100%;
   }
 `
 

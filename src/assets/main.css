@@ -1,4 +1,4 @@
-/* –––FONTS––– */
+/* -- FONTS -- */
 
 /* Inter */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
@@ -6,7 +6,7 @@
 /* Inconsolata */
 @import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;600&display=swap");
 
-/* –––TYPOGRAPHY––– */
+/* -- TYPOGRAPHY -- */
 
 h1,
 h2,
@@ -86,11 +86,6 @@ h6 {
   --colorTwitter: #00acee;
   --colorDiscord: #5865f2;
   --colorTelegram: #0088cc;
-  --colorFacebook: #1877f2;
-  --colorLinkedIn: #1877f2;
-  --colorReddit: #ff5700;
-  --colorGitHub: #1b1f23;
-  --colorFunded: #0d69ef;
 
   /* font-size */
 

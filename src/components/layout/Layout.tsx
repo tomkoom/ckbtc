@@ -7,13 +7,14 @@ import { device } from "@/styles/breakpoints"
 import { Toaster } from "react-hot-toast"
 
 const Layout: FC = (): JSX.Element => {
+  const theme = "light"
+
   return (
-    <LayoutStyled className="App">
-      {/* <LayoutStyled className={theme}> */}
+    <LayoutStyled className={`${theme} App`}>
       <Toaster position={"bottom-center"} toastOptions={{ duration: 5000 }} />
 
       <Nav />
-      {/* <Navlinks /> */}
+      <Navlinks />
 
       <main className="main">
         <Outlet />
@@ -34,7 +35,7 @@ const LayoutStyled = styled.div`
   min-height: 100vh;
 
   > main.main {
-    padding: 0 2rem;
+    padding: 2rem 2rem;
     max-width: calc(2048px + 4rem);
     margin: 0 auto;
     width: 100%;
