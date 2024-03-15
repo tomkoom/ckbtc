@@ -5,8 +5,17 @@ import { formatDateTime } from "@/utils/formatDateTime"
 import { formatId } from "@/utils/formatId"
 import { iExternalLink } from "@/components/icons/Icons"
 
+interface Transaction {
+  index: number
+  amount: string
+  kind: string
+  timestamp: string
+  from_owner: string
+  to_owner: string
+}
+
 const Transactions: FC = (): JSX.Element => {
-  const [txs, setTxs] = useState([])
+  const [txs, setTxs] = useState<Transaction[]>([])
 
   function capitalizeFirstLetter(str: string) {
     return str.charAt(0).toUpperCase() + str.slice(1)
@@ -65,12 +74,8 @@ const Transactions: FC = (): JSX.Element => {
 }
 
 const TransactionStyled = styled.div`
-  padding: 3rem;
-  box-shadow: rgba(var(--primaryColorRgb), 0.05) 0px 6px 24px 0px, rgba(var(--primaryColorRgb), 0.08) 0px 0px 0px 1px;
   font-size: var(--fs7);
   font-weight: var(--fwMedium);
-
-  border-radius: 0.5rem;
 
   > div.header {
     display: flex;

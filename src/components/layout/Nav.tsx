@@ -46,8 +46,9 @@ const Content = styled.div`
 
   > a {
     > h1 {
-      font-size: var(--fs5);
-      font-weight: var(--fwBlack);
+      font-size: var(--fs4);
+      font-weight: var(--fwBold);
+      color: var(--secondaryColor);
     }
   }
 

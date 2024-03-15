@@ -37,7 +37,7 @@ const LayoutStyled = styled.div`
   /* root font */
 
   > main.main {
-    padding: 2rem 2rem;
+    padding: 4rem 2rem;
     max-width: calc(2048px + 4rem);
     margin: 0 auto;
     width: 100%;
