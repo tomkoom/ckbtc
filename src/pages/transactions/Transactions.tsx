@@ -9,28 +9,13 @@ import { useNavigate } from "react-router-dom"
 import { Pagination } from "./_index"
 
 // state
-import { useAppSelector, useAppDispatch } from "@/hooks/useRedux"
-import { selectTransactionsPagination, setTransactionsPaginationTotalItems } from "@/state/transactions"
-
-interface Transaction {
-  index: number
-  amount: string
-  kind: string
-  timestamp: string
-  from_owner: string
-  to_owner: string
-}
+import { useAppSelector } from "@/hooks/useRedux"
+import { selectTransactionsData } from "@/state/transactions"
 
 const Transactions: FC = (): JSX.Element => {
-  const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const [txs, setTxs] = useState<Transaction[]>([])
   const [totalSupply, setTotalSupply] = useState<string>("")
-  const pagination = useAppSelector(selectTransactionsPagination)
-  const itemsPerPage = pagination.itemsPerPage
-  const offset = pagination.itemOffset
-
-  // ..
+  const txs = useAppSelector(selectTransactionsData)
   const symbol = "ckBTC"
 
   const toMint = (): void => {
@@ -40,23 +25,6 @@ const Transactions: FC = (): JSX.Element => {
   const trimZeroes = (str: string): string => {
     return str.replace(/^0+(\d)|(\d)0+$/gm, "$1$2")
   }
-
-  const getTxs = async (offset: number): Promise<void> => {
-    try {
-      const response = await fetch(
-        `https://icrc-api.internetcomputer.org/api/v1/ledgers/${CKBTC_LEDGER_CANISTER}/transactions?offset=${offset.toString()}&limit=${itemsPerPage}&sort_by=-index`,
-      )
-      const data = await response.json()
-      dispatch(setTransactionsPaginationTotalItems(data.total_transactions))
-      setTxs(data.data)
-    } catch (e) {
-      console.log(e)
-    }
-  }
-
-  useEffect(() => {
-    getTxs(offset)
-  }, [offset])
 
   const getTotalSupply = async (): Promise<void> => {
     const response = await fetch(
