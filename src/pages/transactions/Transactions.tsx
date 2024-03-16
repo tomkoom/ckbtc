@@ -1,11 +1,16 @@
 import { FC, useState, useEffect } from "react"
 import { styled } from "styled-components"
 import { CKBTC_LEDGER_CANISTER, E8S } from "@/constants/_index"
-import { formatDateTime } from "@/utils/formatDateTime"
+import { formatDateTime, capitalizeFirstLetter } from "@/utils/_index"
 import { formatId } from "@/utils/formatId"
 import { iExternalLink } from "@/components/icons/Icons"
 import { Btn } from "@/components/btns/_index"
 import { useNavigate } from "react-router-dom"
+import { Pagination } from "./_index"
+
+// state
+import { useAppSelector, useAppDispatch } from "@/hooks/useRedux"
+import { selectTransactionsPagination, setTransactionsPaginationTotalItems } from "@/state/transactions"
 
 interface Transaction {
   index: number
@@ -17,30 +22,41 @@ interface Transaction {
 }
 
 const Transactions: FC = (): JSX.Element => {
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const [txs, setTxs] = useState<Transaction[]>([])
   const [totalSupply, setTotalSupply] = useState<string>("")
+  const pagination = useAppSelector(selectTransactionsPagination)
+  const itemsPerPage = pagination.itemsPerPage
+  const offset = pagination.itemOffset
+
+  // ..
   const symbol = "ckBTC"
 
   const toMint = (): void => {
     navigate("/mint")
   }
 
-  function capitalizeFirstLetter(str: string) {
-    return str.charAt(0).toUpperCase() + str.slice(1)
+  const trimZeroes = (str: string): string => {
+    return str.replace(/^0+(\d)|(\d)0+$/gm, "$1$2")
   }
 
-  const getTxs = async (): Promise<void> => {
+  const getTxs = async (offset: number): Promise<void> => {
     try {
       const response = await fetch(
-        `https://icrc-api.internetcomputer.org/api/v1/ledgers/${CKBTC_LEDGER_CANISTER}/transactions?offset=0&limit=20&sort_by=-index`,
+        `https://icrc-api.internetcomputer.org/api/v1/ledgers/${CKBTC_LEDGER_CANISTER}/transactions?offset=${offset.toString()}&limit=${itemsPerPage}&sort_by=-index`,
       )
       const data = await response.json()
+      dispatch(setTransactionsPaginationTotalItems(data.total_transactions))
       setTxs(data.data)
     } catch (e) {
       console.log(e)
     }
   }
+
+  useEffect(() => {
+    getTxs(offset)
+  }, [offset])
 
   const getTotalSupply = async (): Promise<void> => {
     const response = await fetch(
@@ -51,7 +67,6 @@ const Transactions: FC = (): JSX.Element => {
   }
 
   useEffect(() => {
-    ;(async () => getTxs())()
     ;(async () => getTotalSupply())()
   }, [])
 
@@ -73,6 +88,8 @@ const Transactions: FC = (): JSX.Element => {
       <div className="transactions wrapper">
         <h2 className="pageTitle">Transactions</h2>
 
+        <Pagination />
+
         <div className="header">
           <span>Tx Index</span>
           <span>Amount</span>
@@ -92,7 +109,9 @@ const Transactions: FC = (): JSX.Element => {
                 rel="noreferrer noopener"
               >
                 <span className="index">{tx.index.toString()}</span>
-                <span>{(+tx.amount / E8S).toString()} ckBTC</span>
+                <span>
+                  {trimZeroes((+tx.amount / E8S).toFixed(8))} {symbol}
+                </span>
                 <span className="type">
                   <span>{capitalizeFirstLetter(tx.kind)}</span>
                 </span>
@@ -104,6 +123,8 @@ const Transactions: FC = (): JSX.Element => {
             </li>
           ))}
         </ul>
+
+        <Pagination />
       </div>
     </TransactionStyled>
   )
@@ -111,7 +132,6 @@ const Transactions: FC = (): JSX.Element => {
 
 const TransactionStyled = styled.div`
   font-size: var(--fs7);
-  font-weight: var(--fwMedium);
 
   > div.total_supply {
     margin-bottom: 1rem;
@@ -142,17 +162,16 @@ const TransactionStyled = styled.div`
     }
 
     > ul {
-      > li {
-        &:nth-child(2n + 1) {
-          background-color: var(--underlay1);
-        }
+      > li:nth-child(2n + 1) {
+        background-color: var(--underlay1);
+      }
 
+      > li {
         > a {
           display: flex;
           align-items: center;
           justify-content: flex-start;
           padding: 1rem;
-          margin-bottom: 0.125rem;
           transition: var(--transition1);
 
           > span {

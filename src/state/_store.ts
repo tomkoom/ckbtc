@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit"
 import template from "./_template"
+import transactions from "./transactions"
 
 const store = configureStore({
   middleware: (getDefaultMiddleware) =>
@@ -9,6 +10,7 @@ const store = configureStore({
     }),
   reducer: {
     template,
+    transactions,
   },
 })
 
