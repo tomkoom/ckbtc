@@ -10,7 +10,7 @@ interface BtnProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const Btn: FC<BtnProps> = ({ $type, $text, $icon, ...props }): JSX.Element => {
   return (
     <BtnStyled $type={$type} {...props}>
-      {$icon !== undefined && <span className="icon">{$icon}</span>}
+      {$icon && <span className="icon">{$icon}</span>}
       {$text}
     </BtnStyled>
   )
@@ -22,26 +22,26 @@ const colors = {
 }
 
 const bgColors = {
-  primary: "var(--primaryColor)",
+  primary: "var(--hColor2)",
   secondary: "var(--underlay1)",
 }
 
 const hoverBgColors = {
-  primary: "var(--secondaryColor)",
+  primary: "var(--hColor3)",
   secondary: "var(--underlay2)",
 }
 
 const BtnStyled = styled.button<{ $type: "primary" | "secondary" }>`
-  height: 2.5rem;
+  height: 2.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   gap: 0.5rem;
-  padding: 0 0.75rem;
+  padding: 0 1rem;
   font-size: var(--fsText);
   font-weight: var(--fwBold);
-  border-radius: 1.25rem;
+  /* border-radius: 1.375rem; */
   transition: var(--transition1);
 
   /* disabled */
@@ -62,7 +62,7 @@ const BtnStyled = styled.button<{ $type: "primary" | "secondary" }>`
     height: 1rem;
     display: grid;
     place-items: center;
-    color: var(--tertiaryColor);
+    opacity: 80%;
   }
 `
 

@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { device } from "@/styles/breakpoints"
 import { Link } from "react-router-dom"
 import { Btn } from "@/components/btns/_index"
-import { iSun } from "@/components/icons/Icons"
+import { iSun, iMoon, iRightToBracket } from "@/components/icons/Icons"
 
 const Nav: FC = (): JSX.Element => {
   return (
@@ -14,8 +14,8 @@ const Nav: FC = (): JSX.Element => {
         </Link>
 
         <div className="actions">
-          <span className="theme">{iSun}</span>
-          <Btn $type={"primary"} $text={"Sign In"} onClick={() => {}} />
+          <span className="theme">{iMoon}</span>
+          <Btn $type={"primary"} $text={"Sign In"} $icon={iRightToBracket} onClick={() => {}} />
         </div>
       </Content>
       <hr />

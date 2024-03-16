@@ -65,12 +65,14 @@ h6 {
 
   /* highlight colors */
 
-  --hColor1: #6200ea;
-  --hColor2: #651fff;
-  --hColor3: #7c4dff;
-  --hColorRgb: 98, 0, 234;
-  --hColorRgb2: 101, 31, 255;
-  --hColorRgb3: 124, 77, 255;
+  /* https://mdigi.tools/color-shades/#3b00b9 */
+  --hColor1: #3b00b9;
+  --hColor2: #4900e6;
+  --hColor3: #631aff;
+  --hColor1Rgb: 59, 0, 185;
+
+  /* --hColor1: #3a04ba; */
+  /* --hColor1Rgb: 58, 4, 186; */
 
   /* colors */
 
