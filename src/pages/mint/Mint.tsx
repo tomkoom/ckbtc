@@ -2,7 +2,11 @@ import { FC } from "react"
 import { styled } from "styled-components"
 
 const Mint: FC = (): JSX.Element => {
-  return <MintStyled>Mint</MintStyled>
+  return (
+    <MintStyled className="wrapper">
+      <h2 className="pageTitle">Mint</h2>
+    </MintStyled>
+  )
 }
 
 const MintStyled = styled.div``

@@ -93,8 +93,12 @@ const TransactionStyled = styled.div`
           display: flex;
           align-items: center;
           justify-content: flex-start;
-          padding: 1rem;
+          padding: 0.75rem;
           transition: var(--transition1);
+
+          &:hover {
+            background-color: var(--underlay2);
+          }
 
           > span {
             color: var(--secondaryColor);

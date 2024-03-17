@@ -16,7 +16,6 @@ const TotalSupply: FC = (): JSX.Element => {
   const pagination = useAppSelector(selectTransactionsPagination)
   const txsNum = pagination.totalItems
   const btcPrice = useAppSelector(selectBtcPrice)
-  console.log(btcPrice)
   const symbol = "ckBTC"
 
   const toMint = (): void => {
