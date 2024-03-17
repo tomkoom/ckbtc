@@ -16,6 +16,7 @@ import {
 } from "@/state/transactions"
 import { setTotalSupply } from "@/state/totalSupply"
 import { selectTheme } from "@/state/theme"
+import { fetchBtcPrice } from "@/state/btcPrice"
 
 const Layout: FC = (): JSX.Element => {
   const dispatch = useAppDispatch()
@@ -25,8 +26,9 @@ const Layout: FC = (): JSX.Element => {
   const offset = pagination.itemOffset
 
   const getTxs = async (offset: number): Promise<void> => {
+    const url = `https://icrc-api.internetcomputer.org/api/v1/ledgers/${CKBTC_LEDGER_CANISTER}/transactions?offset=${offset.toString()}&limit=${itemsPerPage}&sort_by=-index`
+
     try {
-      const url = `https://icrc-api.internetcomputer.org/api/v1/ledgers/${CKBTC_LEDGER_CANISTER}/transactions?offset=${offset.toString()}&limit=${itemsPerPage}&sort_by=-index`
       const response = await fetch(url)
       console.log("fetch txs")
       const data = await response.json()
@@ -39,15 +41,29 @@ const Layout: FC = (): JSX.Element => {
 
   const getTotalSupply = async (): Promise<void> => {
     const url = `https://icrc-api.internetcomputer.org/api/v1/ledgers/${CKBTC_LEDGER_CANISTER}/total-supply`
-    const response = await fetch(url)
-    console.log("fetch total supply")
-    const data = await response.json()
-    dispatch(setTotalSupply(data.data[0][1]))
+
+    try {
+      const response = await fetch(url)
+      console.log("fetch total supply")
+      const data = await response.json()
+      dispatch(setTotalSupply(data.data[0][1]))
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   useEffect(() => {
     ;(async () => await getTxs(offset))()
     ;(async () => await getTotalSupply())()
+  }, [offset])
+
+  useEffect(() => {
+    dispatch(fetchBtcPrice())
+    const interval = setInterval(() => {
+      dispatch(fetchBtcPrice())
+    }, 60 * 1000)
+
+    return () => clearInterval(interval)
   }, [offset])
 
   return (

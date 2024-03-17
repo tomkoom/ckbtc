@@ -22,12 +22,12 @@ const colors = {
 }
 
 const bgColors = {
-  primary: "var(--hColor2)",
+  primary: "var(--highlight2)",
   secondary: "var(--underlay1)",
 }
 
 const hoverBgColors = {
-  primary: "var(--hColor3)",
+  primary: "var(--highlight3)",
   secondary: "var(--underlay2)",
 }
 

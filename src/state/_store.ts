@@ -3,6 +3,7 @@ import template from "./_template"
 import transactions from "./transactions"
 import theme from "./theme"
 import totalSupply from "./totalSupply"
+import btcPrice from "./btcPrice"
 
 const store = configureStore({
   middleware: (getDefaultMiddleware) =>
@@ -15,6 +16,7 @@ const store = configureStore({
     transactions,
     theme,
     totalSupply,
+    btcPrice,
   },
 })
 

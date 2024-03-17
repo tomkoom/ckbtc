@@ -7,30 +7,55 @@ import { Btn } from "@/components/btns/_index"
 // state
 import { useAppSelector } from "@/hooks/useRedux"
 import { selectTotalSupply } from "@/state/totalSupply"
+import { selectTransactionsPagination } from "@/state/transactions"
+import { selectBtcPrice } from "@/state/btcPrice"
 
 const TotalSupply: FC = (): JSX.Element => {
   const navigate = useNavigate()
   const totalSupply = useAppSelector(selectTotalSupply)
+  const pagination = useAppSelector(selectTransactionsPagination)
+  const txsNum = pagination.totalItems
+  const btcPrice = useAppSelector(selectBtcPrice)
+  console.log(btcPrice)
   const symbol = "ckBTC"
 
   const toMint = (): void => {
     navigate("/mint")
   }
 
+  const formatNumber = (num: number) => {
+    const options = {
+      // minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }
+    return num.toLocaleString(undefined, options)
+  }
+
   return (
     <TotalSupplyStyled className="wrapper">
       <div className="title">
         <h2 className="pageTitle" style={{ margin: "unset" }}>
-          Total Supply{" "}
+          ckBTC TVL
         </h2>
         <Btn $type={"primary"} $text={"Mint"} onClick={toMint} />
       </div>
 
       <div className="stats">
         <div>
-          <p>
+          <span className="label">Total Value Locked</span>
+          <span className="value">{formatNumber((+totalSupply / E8S) * btcPrice)} USD</span>
+        </div>
+
+        <div>
+          <span className="label">Total Supply</span>
+          <span className="value">
             {(+totalSupply / E8S).toFixed(4)} {symbol}
-          </p>
+          </span>
+        </div>
+
+        <div>
+          <span className="label">Total Transactions</span>
+          <span className="value">{txsNum.toLocaleString()}</span>
         </div>
       </div>
     </TotalSupplyStyled>
@@ -46,6 +71,32 @@ const TotalSupplyStyled = styled.div`
     justify-content: space-between;
     gap: 1rem;
     margin-bottom: 1rem;
+  }
+
+  > div.stats {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    > div {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 2rem;
+      /* box-shadow: var(--boxShadow1); */
+      background-color: var(--underlay1);
+
+      > span.label {
+        font-size: var(--fs6);
+      }
+
+      > span.value {
+        font-size: var(--fs3);
+        font-weight: var(--fwMedium);
+      }
+    }
   }
 `
 
