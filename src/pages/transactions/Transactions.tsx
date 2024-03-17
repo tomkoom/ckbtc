@@ -1,57 +1,23 @@
-import { FC, useState, useEffect } from "react"
+import { FC } from "react"
 import { styled } from "styled-components"
-import { CKBTC_LEDGER_CANISTER, E8S } from "@/constants/_index"
-import { formatDateTime, capitalizeFirstLetter } from "@/utils/_index"
-import { formatId } from "@/utils/formatId"
+import { E8S } from "@/constants/_index"
+import { formatDateTime, capitalizeFirstLetter, trimZeroes, formatId } from "@/utils/_index"
+
+// components
 import { iExternalLink } from "@/components/icons/Icons"
-import { Btn } from "@/components/btns/_index"
-import { useNavigate } from "react-router-dom"
-import { Pagination } from "./_index"
+import { Pagination, TotalSupply } from "./_index"
 
 // state
 import { useAppSelector } from "@/hooks/useRedux"
 import { selectTransactionsData } from "@/state/transactions"
 
 const Transactions: FC = (): JSX.Element => {
-  const navigate = useNavigate()
-  const [totalSupply, setTotalSupply] = useState<string>("")
   const txs = useAppSelector(selectTransactionsData)
   const symbol = "ckBTC"
 
-  const toMint = (): void => {
-    navigate("/mint")
-  }
-
-  const trimZeroes = (str: string): string => {
-    return str.replace(/^0+(\d)|(\d)0+$/gm, "$1$2")
-  }
-
-  const getTotalSupply = async (): Promise<void> => {
-    const response = await fetch(
-      `https://icrc-api.internetcomputer.org/api/v1/ledgers/${CKBTC_LEDGER_CANISTER}/total-supply`,
-    )
-    const data = await response.json()
-    setTotalSupply(data.data[0][1])
-  }
-
-  useEffect(() => {
-    ;(async () => getTotalSupply())()
-  }, [])
-
   return (
     <TransactionStyled>
-      <div className="total_supply wrapper">
-        <div className="title">
-          <h2 className="pageTitle" style={{ margin: "unset" }}>
-            Total Supply{" "}
-          </h2>
-          <Btn $type={"primary"} $text={"Mint"} onClick={toMint} />
-        </div>
-
-        <p>
-          {(+totalSupply / E8S).toFixed(4)} {symbol}
-        </p>
-      </div>
+      <TotalSupply />
 
       <div className="transactions wrapper">
         <h2 className="pageTitle">Transactions</h2>
@@ -100,18 +66,6 @@ const Transactions: FC = (): JSX.Element => {
 
 const TransactionStyled = styled.div`
   font-size: var(--fs7);
-
-  > div.total_supply {
-    margin-bottom: 1rem;
-
-    > div.title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-  }
 
   > div.transactions {
     > div.header {
@@ -168,8 +122,7 @@ const TransactionStyled = styled.div`
               font-weight: var(--fwBold);
               color: var(--background);
               background-color: var(--secondaryColor);
-              padding: 0 0.5rem;
-              /* border-radius: 0.75rem; */
+              padding: 0 0.4rem;
             }
           }
         }

@@ -3,12 +3,7 @@
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  background-color: var(--underlay1);
   margin: 1rem 0;
-}
-
-.pagination span {
-  padding: 1rem;
 }
 
 /* react paginate */
@@ -16,6 +11,7 @@
 .containerClassName {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.125rem;
 }
 
@@ -24,10 +20,10 @@
 .nextLinkClassName,
 .breakLinkClassName {
   display: inline-block;
-  background-color: var(--underlay2);
   padding: 0.75rem;
   cursor: pointer;
   transition: var(--transition1);
+  box-shadow: var(--boxShadow2Inset);
 }
 
 .pageLinkClassName:hover,

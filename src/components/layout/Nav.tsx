@@ -5,7 +5,18 @@ import { Link } from "react-router-dom"
 import { Btn } from "@/components/btns/_index"
 import { iSun, iMoon, iRightToBracket } from "@/components/icons/Icons"
 
+// state
+import { useAppSelector, useAppDispatch } from "@/hooks/useRedux"
+import { selectTheme, setTheme } from "@/state/theme"
+
 const Nav: FC = (): JSX.Element => {
+  const dispatch = useAppDispatch()
+  const theme = useAppSelector(selectTheme)
+
+  const changeTheme = (): void => {
+    dispatch(setTheme(theme === "dark" ? "light" : "dark"))
+  }
+
   return (
     <NavStyled>
       <Content>
@@ -14,7 +25,9 @@ const Nav: FC = (): JSX.Element => {
         </Link>
 
         <div className="actions">
-          <span className="theme">{iMoon}</span>
+          <button className="theme" onClick={changeTheme}>
+            {theme === "dark" ? iSun : iMoon}
+          </button>
           <Btn $type={"primary"} $text={"Sign In"} $icon={iRightToBracket} onClick={() => {}} />
         </div>
       </Content>
@@ -57,7 +70,7 @@ const Content = styled.div`
     align-items: center;
     gap: 0.5rem;
 
-    > span.theme {
+    > button.theme {
       width: 3rem;
       height: 3rem;
       display: grid;

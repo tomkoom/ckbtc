@@ -17,7 +17,7 @@ const Btn: FC<BtnProps> = ({ $type, $text, $icon, ...props }): JSX.Element => {
 }
 
 const colors = {
-  primary: "var(--background)",
+  primary: "#fff",
   secondary: "var(--primaryColor)",
 }
 

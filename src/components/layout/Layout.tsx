@@ -14,20 +14,21 @@ import {
   setTransactionsPaginationTotalItems,
   setTransactionsData,
 } from "@/state/transactions"
+import { setTotalSupply } from "@/state/totalSupply"
+import { selectTheme } from "@/state/theme"
 
 const Layout: FC = (): JSX.Element => {
   const dispatch = useAppDispatch()
-  const theme = "light"
+  const theme = useAppSelector(selectTheme)
   const pagination = useAppSelector(selectTransactionsPagination)
   const itemsPerPage = pagination.itemsPerPage
   const offset = pagination.itemOffset
 
   const getTxs = async (offset: number): Promise<void> => {
     try {
-      const response = await fetch(
-        `https://icrc-api.internetcomputer.org/api/v1/ledgers/${CKBTC_LEDGER_CANISTER}/transactions?offset=${offset.toString()}&limit=${itemsPerPage}&sort_by=-index`,
-      )
-      console.log("fetch")
+      const url = `https://icrc-api.internetcomputer.org/api/v1/ledgers/${CKBTC_LEDGER_CANISTER}/transactions?offset=${offset.toString()}&limit=${itemsPerPage}&sort_by=-index`
+      const response = await fetch(url)
+      console.log("fetch txs")
       const data = await response.json()
       dispatch(setTransactionsPaginationTotalItems(data.total_transactions))
       dispatch(setTransactionsData(data.data))
@@ -36,8 +37,17 @@ const Layout: FC = (): JSX.Element => {
     }
   }
 
+  const getTotalSupply = async (): Promise<void> => {
+    const url = `https://icrc-api.internetcomputer.org/api/v1/ledgers/${CKBTC_LEDGER_CANISTER}/total-supply`
+    const response = await fetch(url)
+    console.log("fetch total supply")
+    const data = await response.json()
+    dispatch(setTotalSupply(data.data[0][1]))
+  }
+
   useEffect(() => {
-    getTxs(offset)
+    ;(async () => await getTxs(offset))()
+    ;(async () => await getTotalSupply())()
   }, [offset])
 
   return (

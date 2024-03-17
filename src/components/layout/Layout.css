@@ -55,6 +55,6 @@ img {
 
   /* ... */
   padding: 3rem;
-  box-shadow: rgba(var(--primaryColorRgb), 0.05) 0px 6px 24px 0px, rgba(var(--primaryColorRgb), 0.08) 0px 0px 0px 1px;
+  box-shadow: var(--shadow1);
   border-radius: 0.5rem;
 }

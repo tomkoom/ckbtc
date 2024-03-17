@@ -1,6 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit"
 import template from "./_template"
 import transactions from "./transactions"
+import theme from "./theme"
+import totalSupply from "./totalSupply"
 
 const store = configureStore({
   middleware: (getDefaultMiddleware) =>
@@ -11,6 +13,8 @@ const store = configureStore({
   reducer: {
     template,
     transactions,
+    theme,
+    totalSupply,
   },
 })
 
