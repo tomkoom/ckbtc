@@ -7,6 +7,7 @@ import { device } from "@/styles/breakpoints"
 import { Toaster } from "react-hot-toast"
 import { CKBTC_LEDGER_CANISTER } from "@/constants/_index"
 
+
 // state
 import { useAppSelector, useAppDispatch } from "@/hooks/useRedux"
 import {
@@ -68,7 +69,7 @@ const Layout: FC = (): JSX.Element => {
 
   return (
     <LayoutStyled className={`${theme} App`}>
-      <Toaster position={"bottom-center"} toastOptions={{ duration: 5000 }} />
+      <Toaster position={"top-center"} toastOptions={{ duration: 5000 }} />
 
       <Nav />
       <Navlinks />

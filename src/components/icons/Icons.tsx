@@ -9,6 +9,7 @@ import {
   faCheck,
   faLeaf,
   faArrowRight,
+  faCopy,
 } from "@fortawesome/free-solid-svg-icons"
 import { faXTwitter, faTwitter, faTelegramPlane, faDiscord, faGithub } from "@fortawesome/free-brands-svg-icons"
 
@@ -22,6 +23,7 @@ export const iFire = <FontAwesomeIcon icon={faFire} />
 export const iCheck = <FontAwesomeIcon icon={faCheck} />
 export const iLeaf = <FontAwesomeIcon icon={faLeaf} />
 export const iArrowRight = <FontAwesomeIcon icon={faArrowRight} />
+export const iCopy = <FontAwesomeIcon icon={faCopy} />
 
 // brands
 export const iX = <FontAwesomeIcon icon={faXTwitter} />

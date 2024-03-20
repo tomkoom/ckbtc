@@ -28,9 +28,10 @@ const NavlinksStyled = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.25rem;
+    gap: 0.3rem;
 
     > li {
+      font-weight: var(--fwMedium);
       cursor: pointer;
       color: var(--tertiaryColor);
       transition: var(--transition1);
