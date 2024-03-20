@@ -32,6 +32,10 @@ const Mint: FC = (): JSX.Element => {
           </a>{" "}
           is a minter for the ckBTC Ledger canister: it can mint and burn ckBTC tokens.
         </p>
+
+        <div>ckbtc balance</div>
+
+        <h3 className="sectionTitle">To mint ckBTC:</h3>
         {tab === "mint" ? <MintPanel /> : tab === "unmint" ? <UnmintPanel /> : null}
       </div>
     </MintStyled>

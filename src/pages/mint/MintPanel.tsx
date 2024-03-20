@@ -79,7 +79,7 @@ const MintPanelStyled = styled.div`
           > p {
             > span {
               background-color: var(--underlay2);
-              padding: 0.125rem;
+              padding: 0.25rem;
             }
           }
         }

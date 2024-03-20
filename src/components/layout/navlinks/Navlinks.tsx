@@ -1,29 +1,15 @@
 import { FC } from "react"
 import { styled } from "styled-components"
 import { NavItem } from "./_index"
-import { useNavigate } from "react-router-dom"
+import { useNavlinks } from "@/hooks/_index"
 
 const Navlinks: FC = (): JSX.Element => {
-  const navigate = useNavigate()
-
-  const nav = (pathname: string) => {
-    navigate({
-      pathname,
-    })
-  }
-
-  const navlinks = [
-    { label: "Overview", pathname: "/", route: () => nav("/") },
-    { label: "Transactions", pathname: "/txs", route: () => nav("txs") },
-    { label: "Mint", pathname: "/mint", route: () => nav("mint") },
-    { label: "Stats", pathname: "/stats", route: () => nav("stats") },
-    { label: "ckBTC dApps", pathname: "/dapps", route: () => nav("dapps") },
-  ]
+  const { navlinks } = useNavlinks()
 
   return (
     <NavlinksStyled>
       <ul className="navlinks">
-        {navlinks.map((navlink, i) => (
+        {navlinks.map((navlink) => (
           <NavItem key={navlink.label} label={navlink.label} pathname={navlink.pathname} route={navlink.route} />
         ))}
       </ul>

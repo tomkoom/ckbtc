@@ -29,7 +29,7 @@ const Home: FC = (): JSX.Element => {
       </div>
 
       <div className="actions">
-        <Btn $type={"primary"} $text={"Mint"} onClick={() => {}} />
+        <Btn $type={"primary"} $text={"Mint Some ckBTC"} onClick={() => {}} />
         {/* <Btn style={{ width: "100%" }} $type={"primary"} $text={"Mint"} onClick={() => {}} /> */}
       </div>
     </HomeStyled>
