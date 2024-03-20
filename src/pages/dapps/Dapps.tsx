@@ -3,7 +3,7 @@ import { styled } from "styled-components"
 
 const Dapps: FC = (): JSX.Element => {
   return (
-    <DappsStyled className="wrapper">
+    <DappsStyled className="wrapper1280">
       <h2 className="pageTitle">ckBTC dApps</h2>
     </DappsStyled>
   )

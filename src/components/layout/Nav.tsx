@@ -63,6 +63,13 @@ const Content = styled.div`
       font-weight: var(--fwBold);
       color: var(--secondaryColor);
     }
+
+    /* > h1 {
+      font-family: var(--monospace);
+      font-size: var(--fs4);
+      font-weight: var(--fwBold);
+      letter-spacing: -2px;
+    } */
   }
 
   > div.actions {

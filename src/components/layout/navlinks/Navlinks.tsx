@@ -1,7 +1,6 @@
 import { FC } from "react"
 import { styled } from "styled-components"
 import { NavItem } from "./_index"
-import { device } from "@/styles/breakpoints"
 import { useNavigate } from "react-router-dom"
 
 const Navlinks: FC = (): JSX.Element => {
@@ -14,25 +13,20 @@ const Navlinks: FC = (): JSX.Element => {
   }
 
   const navlinks = [
-    { label: "Overview", route: () => nav("/") },
-    { label: "Transactions", route: () => nav("txs") },
-    { label: "Stats", route: () => nav("stats") },
-    { label: "Mint", route: () => nav("mint") },
-    { label: "ckBTC dApps", route: () => nav("dapps") },
+    { label: "Overview", pathname: "/", route: () => nav("/") },
+    { label: "Transactions", pathname: "/txs", route: () => nav("txs") },
+    { label: "Stats", pathname: "/stats", route: () => nav("stats") },
+    { label: "Mint", pathname: "/mint", route: () => nav("mint") },
+    { label: "ckBTC dApps", pathname: "/dapps", route: () => nav("dapps") },
   ]
 
   return (
     <NavlinksStyled>
       <ul className="navlinks">
         {navlinks.map((navlink, i) => (
-          <li key={navlink.label}>
-            <NavItem label={navlink.label} route={navlink.route} />
-            {i + 1 < navlinks.length && <hr />}
-          </li>
+          <NavItem key={navlink.label} label={navlink.label} pathname={navlink.pathname} route={navlink.route} />
         ))}
       </ul>
-
-      <hr />
     </NavlinksStyled>
   )
 }
@@ -44,41 +38,12 @@ const NavlinksStyled = styled.nav`
     justify-content: center;
     flex-wrap: wrap;
 
-    @media ${device.tablet} {
-      justify-content: flex-start;
-    }
-
     > li {
       display: flex;
       align-items: center;
       flex: 1;
-
-      @media ${device.tablet} {
-        flex: unset;
-      }
-
-      > button {
-        width: 100%;
-
-        @media ${device.tablet} {
-          padding: 0 1rem;
-        }
-      }
-
-      > hr {
-        border: none;
-        height: 3rem;
-        width: 1px;
-        background-color: var(--underlay2);
-      }
+      padding: 0 1.5rem;
     }
-  }
-
-  > hr {
-    border: none;
-    height: 1px;
-    background-color: var(--underlay2);
-    width: 100%;
   }
 `
 

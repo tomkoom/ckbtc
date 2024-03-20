@@ -3,7 +3,7 @@ import { styled } from "styled-components"
 
 const Mint: FC = (): JSX.Element => {
   return (
-    <MintStyled className="wrapper">
+    <MintStyled className="wrapper1280">
       <h2 className="pageTitle">Mint</h2>
     </MintStyled>
   )

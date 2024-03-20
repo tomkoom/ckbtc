@@ -49,7 +49,24 @@ img {
   margin-bottom: 1rem;
 }
 
+.sectionTitle {
+  font-size: var(--fs4);
+  font-weight: var(--fwMedium);
+  line-height: 125%;
+  margin-bottom: 1rem;
+}
+
 .wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+
+  /* ... */
+  padding: 3rem;
+  box-shadow: var(--shadow1);
+  border-radius: 0.5rem;
+}
+
+.wrapper1280 {
   max-width: 1280px;
   margin: 0 auto;
 

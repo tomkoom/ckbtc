@@ -31,7 +31,7 @@ const TotalSupply: FC = (): JSX.Element => {
   }
 
   return (
-    <TotalSupplyStyled className="wrapper">
+    <TotalSupplyStyled className="wrapper1280">
       <div className="title">
         <h2 className="pageTitle" style={{ margin: "unset" }}>
           ckBTC TVL

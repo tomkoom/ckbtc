@@ -4,7 +4,7 @@ import { E8S } from "@/constants/_index"
 import { formatDateTime, capitalizeFirstLetter, trimZeroes, formatId } from "@/utils/_index"
 
 // components
-import { iExternalLink } from "@/components/icons/Icons"
+import { iExternalLink, iRightLeft } from "@/components/icons/Icons"
 import { Pagination, TotalSupply } from "./_index"
 
 // state
@@ -47,7 +47,10 @@ const Transactions: FC = (): JSX.Element => {
                   {trimZeroes((+tx.amount / E8S).toFixed(8))} {symbol}
                 </span>
                 <span className="type">
-                  <span>{capitalizeFirstLetter(tx.kind)}</span>
+                  <span>
+                    <span className="icon">{tx.kind === "transfer" && iRightLeft}</span>{" "}
+                    {capitalizeFirstLetter(tx.kind)}
+                  </span>
                 </span>
                 <span>{formatDateTime(+tx.timestamp / 1_000_000)}</span>
                 <span>{tx.from_owner ? formatId(tx.from_owner) : "..."}</span>
@@ -122,11 +125,16 @@ const TransactionStyled = styled.div`
               display: flex;
               align-items: center;
               align-self: flex-start;
+              gap: 0.2rem;
               font-size: 0.7rem;
               font-weight: var(--fwBold);
               color: var(--background);
               background-color: var(--secondaryColor);
               padding: 0 0.4rem;
+
+              > span.icon {
+                font-size: 0.6rem;
+              }
             }
           }
         }
