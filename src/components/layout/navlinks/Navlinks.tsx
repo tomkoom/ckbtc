@@ -15,8 +15,8 @@ const Navlinks: FC = (): JSX.Element => {
   const navlinks = [
     { label: "Overview", pathname: "/", route: () => nav("/") },
     { label: "Transactions", pathname: "/txs", route: () => nav("txs") },
-    { label: "Stats", pathname: "/stats", route: () => nav("stats") },
     { label: "Mint", pathname: "/mint", route: () => nav("mint") },
+    { label: "Stats", pathname: "/stats", route: () => nav("stats") },
     { label: "ckBTC dApps", pathname: "/dapps", route: () => nav("dapps") },
   ]
 

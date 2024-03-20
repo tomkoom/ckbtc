@@ -4,7 +4,7 @@ import { E8S } from "@/constants/_index"
 import { formatDateTime, capitalizeFirstLetter, trimZeroes, formatId } from "@/utils/_index"
 
 // components
-import { iExternalLink, iRightLeft } from "@/components/icons/Icons"
+import { iCheck, iExternalLink, iFire, iLeaf, iRightLeft } from "@/components/icons/Icons"
 import { Pagination, TotalSupply } from "./_index"
 
 // state
@@ -48,7 +48,12 @@ const Transactions: FC = (): JSX.Element => {
                 </span>
                 <span className="type">
                   <span>
-                    <span className="icon">{tx.kind === "transfer" && iRightLeft}</span>{" "}
+                    <span className="icon">
+                      {(tx.kind === "transfer" && iRightLeft) ||
+                        (tx.kind === "burn" && iFire) ||
+                        (tx.kind === "approve" && iCheck) ||
+                        (tx.kind === "mint" && iLeaf)}
+                    </span>{" "}
                     {capitalizeFirstLetter(tx.kind)}
                   </span>
                 </span>
@@ -133,7 +138,10 @@ const TransactionStyled = styled.div`
               padding: 0 0.4rem;
 
               > span.icon {
-                font-size: 0.6rem;
+                width: 1rem;
+                height: 1rem;
+                display: grid;
+                place-items: center;
               }
             }
           }

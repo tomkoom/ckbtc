@@ -21,7 +21,6 @@ const NavItem: FC<NavItemProps> = ({ label, pathname, route }): JSX.Element => {
 }
 
 const NavItemStyled = styled.li<{ selected: boolean }>`
-  /* width: 100%; */
   height: 4rem;
   display: flex;
   align-items: center;
