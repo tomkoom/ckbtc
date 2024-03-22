@@ -79,3 +79,23 @@ p {
   box-shadow: var(--shadow1);
   border-radius: 0.5rem;
 }
+
+.wrapper960 {
+  max-width: 960px;
+  margin: 0 auto;
+
+  /* ... */
+  padding: 3rem;
+  box-shadow: var(--shadow1);
+  border-radius: 0.5rem;
+}
+
+.wrapper640 {
+  max-width: 640px;
+  margin: 0 auto;
+
+  /* ... */
+  padding: 3rem;
+  box-shadow: var(--shadow1);
+  border-radius: 0.5rem;
+}

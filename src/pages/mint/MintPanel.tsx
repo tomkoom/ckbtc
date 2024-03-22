@@ -57,19 +57,26 @@ const MintPanel: FC = (): JSX.Element => {
 
           <div>
             <div className="label">
-              <p>Notify ckBTC Minter canister about the transfer</p>
+              <p>
+                Notify ckBTC Minter canister about the transfer on the <strong>Wallet</strong> panel by{" "}
+                <strong>updating your balance</strong>
+              </p>
             </div>
 
-            <div className="value">
+            {/* <div className="value">
               <span>{"0.00" + " " + symbol}</span>
               <Btn style={{ width: "100%" }} $type={"primary"} $text={"Update Balance"} onClick={() => {}} />
-            </div>
+            </div> */}
           </div>
         </li>
 
         <li className="hint">
-          <p>You now have some ckBTC! Enjoy the ckBTC superpowers such as Internet Computer speed and low fees!</p>
-          <Btn $type={"secondary"} $text={"Manage your assets from the profile page"} />
+          <p>
+            Enjoy the ckBTC superpowers such as Internet Computer speed and low fees after your balance has been
+            topped-up!
+          </p>
+          {/* <p>You now have some ckBTC! Enjoy the ckBTC superpowers such as Internet Computer speed and low fees!</p> */}
+          {/* <Btn $type={"secondary"} $text={"Manage your assets from the profile page"} /> */}
         </li>
       </ul>
     </MintPanelStyled>
@@ -97,6 +104,7 @@ const MintPanelStyled = styled.div`
 
     > li {
       display: flex;
+      align-items: center;
       gap: 1rem;
 
       > span.step {
@@ -118,13 +126,6 @@ const MintPanelStyled = styled.div`
           display: flex;
           align-items: center;
           gap: 1rem;
-
-          > p {
-            > span {
-              background-color: var(--underlay2);
-              padding: 0.25rem;
-            }
-          }
         }
 
         > div.value {

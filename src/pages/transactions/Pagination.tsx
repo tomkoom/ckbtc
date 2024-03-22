@@ -33,7 +33,7 @@ const Pagination: FC = (): JSX.Element => {
 
   return (
     <div className="pagination">
-      <span>{totalItems.toString()} total txs</span>
+      <span>{totalItems.toString()} total txs, showing 25 items</span>
 
       <ReactPaginate
         breakLabel="..."

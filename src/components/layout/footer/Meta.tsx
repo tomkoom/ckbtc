@@ -1,7 +1,7 @@
 import { FC } from "react"
-import { device } from "@/styles/breakpoints"
 import { styled } from "styled-components"
 import { IC_LOGO, FRONTEND_CANISTER, PROJECT_NAME } from "@/constants/_index"
+import { FRONTEND_URL } from "@/constants/_index"
 
 const Meta: FC = (): JSX.Element => {
   const year = new Date().getFullYear()
@@ -18,7 +18,7 @@ const Meta: FC = (): JSX.Element => {
 
       <span>
         On-chain:{" "}
-        <a href="" target="_blank" rel="noreferrer noopener">
+        <a href={FRONTEND_URL} target="_blank" rel="noreferrer noopener">
           {FRONTEND_CANISTER || "..."}
         </a>
       </span>

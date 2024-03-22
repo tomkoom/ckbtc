@@ -8,7 +8,8 @@ export const fetchBtcPrice = createAsyncThunk("btcPrice/fetchBtcPrice", async (_
     const data = await response.json()
     return data
   } catch (error) {
-    return rejectWithValue(error.message)
+    console.log(error)
+    // return rejectWithValue(error.message)
   }
 })
 
@@ -44,7 +45,7 @@ const btcPrice = createSlice({
       })
       .addCase(fetchBtcPrice.rejected, (state, { payload }) => {
         state.status = "rejected"
-        state.error = payload
+        // state.error = payload
       })
   },
 })
